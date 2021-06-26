@@ -1,32 +1,29 @@
-from flask import request, render_template
+from pymongo import MongoClient
+from flask import render_template, flash 
 from flask.views import MethodView
+from forms import Signup_Form
 
 class Signup(MethodView):
     def post(self):
-        userid = request.form.get('id', type = str)
-        password = request.form.get('pw', type = str)
+        form = Signup_Form()
+        if form.validate_on_submit() == False:
+            for msg in form.errors.values():
+                if msg:
+                    flash(str(msg[0]))
+                    return render_template('signup.html', form = form) 
 
-        if len(userid) > 6:
-            flash('ID needs longer than 6 char.')
-            return render_template('signup.html')
-        if len(password) > 6:
-            flash('PW needs longer than 6 char.')
-            return render_template('signup.html')
-        
-        user = conn.db.user
-        cnt = user.find({'id':userid}).count()
-        if cnt:
-            flash('ID already exists.')
-            return render_template('signup.html') 
-
+        userid = form.data.get('userid')
+        password = form.data.get('password')
         doc = {
             'id':userid,
             'pw':password
         }
-        user.insert_one(doc)
+        conn = MongoClient('localhost')
+        conn.db.user.insert_one(doc)
         # 에러핸들러
-        flash('Signup Success!') 
-        return render_template('signup.html') # login 페이지
+        flash('회원가입 성공!') 
+        conn.close()
+        return render_template('signup.html', form = form)  # login 페이지로 교체 
         
     def get(self):
-        return render_template('signup.html') 
+        return render_template('signup.html', form = Signup_Form()) 
