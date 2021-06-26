@@ -1,40 +1,16 @@
 from pymongo import MongoClient
-from flask import Flask, request, render_template
+from flask import Flask, redirect
+from SignupView import Signup
 
 app = Flask(__name__)
 conn = MongoClient('localhost')
 
-@app.route('/signup', methods = ['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        userid = request.form.get('id', type = str)
-        password = request.form.get('pw', type = str)
+app.add_url_rule('/signup/', view_func = Signup.as_view('signup'))
 
-        if len(userid) > 6:
-            flash('ID needs longer than 6 char.')
-            return render_template('signup.html')
-        if len(password) > 6:
-            flash('PW needs longer than 6 char.')
-            return render_template('signup.html')
-        
-        user = conn.db.user
-        cnt = user.find({'id':userid}).count()
-        if cnt:
-            flash('ID already exists.')
-            return render_template('signup.html') 
-
-        doc = {
-            'id':userid,
-            'pw':password
-        }
-        user.insert_one(doc)
-        # 에러핸들러
-        flash('Signup Success!') 
-        return render_template('signup.html') # login 페이지
-    else:
-        return render_template('signup.html') 
-
+@app.route('/')
+def root():
+    return redirect('/signup/')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(debug = True, host='0.0.0.0') # 운영서버에서는 디버그모드 비활성화
     conn.close()
