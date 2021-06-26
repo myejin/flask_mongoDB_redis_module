@@ -17,12 +17,12 @@
 </head>
 <body>
     <div class="container">
-      <form class="form-signin">
+      <form class="form-signin" method="POST" >
+        {{form.csrf_token}}
         <h2 class="form-signin-heading">회원가입</h2>
-        <label for="id" class="sr-only">ID</label>
-        <input type="text" id="id" class="form-control" placeholder="ID longer than 6 char" required autofocus>
-        <label for="pw" class="sr-only">Password</label>
-        <input type="password" id="pw" class="form-control" placeholder="Password longer than 6 char" required> 
+        {{form.userid(class="form-control", placeholder="ID (영문, 숫자 포함 7-15자리)")}}
+        {{form.password(class="form-control", placeholder="PW (영문, 숫자, 특수문자 포함 7-15자리)")}}
+        {{form.re_pw(class="form-control", placeholder="PW 확인 (PW와 같게 입력)")}}
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
     </div> 
