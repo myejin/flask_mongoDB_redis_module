@@ -1,0 +1,30 @@
+{% with msg = get_flashed_messages() %} 
+    {% if msg %} 
+        <script> alert("{{msg[-1]}}") </script> 
+    {% endif %} 
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">회원가입</h2>
+        <label for="id" class="sr-only">ID</label>
+        <input type="text" id="id" class="form-control" placeholder="ID longer than 6 char" required autofocus>
+        <label for="pw" class="sr-only">Password</label>
+        <input type="password" id="pw" class="form-control" placeholder="Password longer than 6 char" required> 
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div> 
+  </body>
+<html>
