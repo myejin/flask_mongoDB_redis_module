@@ -1,0 +1,29 @@
+{% with msg = get_flashed_messages() %} 
+    {% if msg %} 
+        <script> alert("{{msg[-1]}}") </script> 
+    {% endif %} 
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>로그인</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+      <form class="form-signin" method="POST" >
+        {{form.csrf_token}}
+        <h2 class="form-signin-heading">로그인</h2>
+        {{form.userid(class="form-control", placeholder="ID")}}
+        {{form.password(class="form-control", placeholder="PW")}}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+      </form>
+    </div> 
+  </body>
+<html>
