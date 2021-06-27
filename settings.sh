@@ -5,4 +5,4 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org python3 python3-pip 
 sudo systemctl start mongod
 sudo systemctl enable mongod
-sudo pip3 install pymongo flask Flask-WTF
+sudo pip3 install pymongo flask Flask-WTF Flask-Bcrypt
