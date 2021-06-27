@@ -1,6 +1,6 @@
-# 회원가입
+# 1. 회원가입
 
-### 1. UI 테스트
+### 1) UI 테스트
 
   - `새 계정 생성 및 MongoDB와 연동 확인`
   - `ID/PW 유효성 검사`
@@ -12,3 +12,16 @@
     - wtforms 적용, flash 메세지
     
       ![그림2](https://user-images.githubusercontent.com/42771578/123518529-40517d00-d6e1-11eb-8107-aedf19ff0590.png)
+
+# 2. 로그인
+
+### 1) UI테스트
+
+  - `ID/PW 유효성 검사`
+    - 로그인 화면
+        
+      ![그림4](https://user-images.githubusercontent.com/42771578/123538797-658dcc00-d771-11eb-9e68-3b14ded13221.png)
+      
+    - flash 메세지
+
+      ![그림5](https://user-images.githubusercontent.com/42771578/123538799-66bef900-d771-11eb-974b-c5b21d716980.png)
