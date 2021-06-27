@@ -14,7 +14,11 @@
 </head>
 <body>
     <h3>홈</h3>
-    <a href="/signup/" style="color: black">회원가입</a><br>
-    <a href="/login/" style="color: black">로그인</a>
+    {% if userid %}
+        {{userid}}님! <a href="/logout/" style="color: black">로그아웃</a>
+    {% else %}
+        <a href="/signup/" style="color: black">회원가입</a><br>
+        <a href="/login/" style="color: black">로그인</a>
+    {% endif %}
 </body>
 <html>

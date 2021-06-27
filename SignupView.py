@@ -44,3 +44,8 @@ class Login(MethodView):
         
     def get(self):
         return render_template('login.html', form = Login_Form()) 
+
+class Logout(MethodView):        
+    def get(self):
+        session.pop('userid', None)
+        return redirect('/')
